@@ -8,6 +8,10 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .tasks import notify_about_new_post
 from django.core.cache import cache # импортируем наш кэш
+from django.utils import timezone
+import pytz #  импортируем стандартный модуль для работы с часовыми поясами
+from django.shortcuts import redirect
+from django.utils.translation import gettext
 
 class PostList(ListView):
     model = Post
@@ -15,7 +19,14 @@ class PostList(ListView):
     context_object_name = 'posts'
     template_name = 'news.html'
     paginate_by = 10
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["current_time"] = timezone.localtime(timezone.now())
+        context["timezones"] = pytz.common_timezones
+        return context
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/news')
 
 class PostDetail(DetailView):
     model = Post
@@ -56,7 +67,13 @@ class PostSearch(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
+        context["current_time"] = timezone.localtime(timezone.now())
+        context["timezones"] = pytz.common_timezones
         return context
+        
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/news/search')
 
 class NewsCreate(PermissionRequiredMixin, CreateView):
     permission_required = ('news_bd.add_post')
@@ -160,7 +177,12 @@ class CategoryListView(ListView):
         context = super().get_context_data(**kwargs)
         context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
         context['category'] = self.category
+        context["current_time"] = timezone.localtime(timezone.now())
+        context["timezones"] = pytz.common_timezones
         return context
+    def post(self, request, **kwargs):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect(f'/news/categories/{self.kwargs["pk"]}')
 
 @login_required
 def subscribe(request, pk):
@@ -168,5 +190,5 @@ def subscribe(request, pk):
     category = Category.objects.get(id = pk)
     category.subscribers.add(user)
 
-    message = "Вы успешно подписались на рассылку новостей категории "
+    message = gettext("Вы успешно подписались на рассылку новостей категории ")
     return render(request, 'subscribe.html', {'category': category, 'message':message})

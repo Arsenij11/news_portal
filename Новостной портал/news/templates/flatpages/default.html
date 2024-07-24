@@ -10,6 +10,9 @@
 
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+	<style>
+        body {background-color: {% if current_time.hour >= 19 or current_time.hour <= 7 %} darkcyan {% else %} powderblue {% endif %};}
+    </style>
     </head>
     <body>
     {% load cache %} <!-- Загружаем кэширование -->

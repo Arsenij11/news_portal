@@ -1,5 +1,6 @@
 {% extends 'flatpages/default.html' %}
-
+{% load i18n %}
+{% load tz %}
 {% load custom_filter %}
 {% load custom_tags %}
 
@@ -8,8 +9,40 @@ News
 {% endblock title %}
 
 {% block content %}
-   <h1>Все новости/статьи</h1>
-   <hr>
+<br>
+   <h1>{% trans 'Все новости/статьи' %}</h1>
+<br>
+   <form action="{% url 'set_language' %}" method="POST"> 
+		{% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+        <input type="hidden" name="next" value="{{ redirect_to }}">
+        <select name="language" id="">
+            {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
+            {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
+            {% get_current_language as LANGUAGE_CODE %}
+            {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                    {{ language.name_local }} - {{ language.code }}
+                </option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="set">
+</form>
+<br>
+	{% get_current_timezone as TIME_ZONE %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="timezone">{% trans 'Выберите свой часовой пояс' %}:</label>
+        <select name="timezone">
+            {% for tz in timezones %}
+            <option value="{{ tz }}"{% if tz == TIME_ZONE %} selected{% endif %}>{{ tz }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Set">
+    </form>
+ 
+    {{ TIME_ZONE }}
+    {{ current_time|timezone:TIME_ZONE }} <!-- Отображаем время в выбранном часовом поясе  -->
+<hr>
 
    <form action="" method="get">
        {{ filterset.form.as_p }}
@@ -20,9 +53,10 @@ News
    {% if posts %}
           <table align="center" border = "1">
         <tr>
-            <th>Заголовок</th>
-            <th>Дата публикации</th>
-            <th>Текст новости/статьи</th>
+            <th>{% trans 'Заголовок' %}</th>
+            <th>{% trans 'Дата публикации' %}</th>
+            <th>{% trans 'Текст новости/статьи' %}</th>
+			<th>{% trans 'Категория' %}</th>
         </tr>
 
         {% for post in posts %}
@@ -30,12 +64,31 @@ News
             <td>{{ post.title|censor }}</td>
             <td>{{ post.time_post }}</td>
             <td>{{ post.text|truncatewords:20|censor}}</td>
+			<td>
+                {% for category in post.category.all %}
+                <a href = "{% url 'category_list' category.id %}">{{category}}</a>
+                {% endfor %}
+            </td>
+            <td>
+                {% if perms.news_bd.change_post and post.type_post == 'NE' %}
+                <a href="{% url 'news_edit' pk=post.id %}">{% trans 'Изменить новость' %}</a>
+                {% elif perms.news_bd.change_post and post.type_post == 'AR' %}
+                    <a href="{% url 'article_edit' pk=post.id %}">{% trans 'Изменить статью' %}</a>
+                {% endif %}
+            </td>
+             <td>
+                {% if perms.news_bd.delete_post and post.type_post == 'NE' %}
+                <a href="{% url 'news_delete' pk=post.id %}">{% trans 'Удалить новость' %}</a>
+                {% elif perms.news_bd.delete_post and post.type_post == 'AR' %}
+                    <a href="{% url 'article_delete' pk=post.id %}">{% trans 'Удалить статью' %}</a>
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </table>
 
    {% else %}
-       <h2>Свежих новостей нет!!!</h2>
+       <h2>(% trans 'Свежих новостей нет!!!' %}</h2>
    {% endif %}
 
     {% if page_obj.has_previous %}

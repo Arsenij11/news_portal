@@ -28,6 +28,8 @@ class Author(models.Model):
 
         self.user_rating = post_rating * 3 + comments_rating + posts_comments_rating
         self.save()
+    def __str__(self):
+        return f'{self.user}'
 
 
 class Category(models.Model):
@@ -65,6 +67,8 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # сначала вызываем метод родителя, чтобы объект сохранился
         cache.delete(f'post-{self.pk}')  # затем удаляем его из кэша, чтобы сбросить его
+    def __str__(self):
+        return self.title
 
 
 class PostCategory(models.Model):
@@ -84,4 +88,6 @@ class Comment(models.Model):
     def dislike(self):
         self.comment_rating = self.comment_rating - 1.0
         self.save()
+    def __str__(self):
+        return self.text
 

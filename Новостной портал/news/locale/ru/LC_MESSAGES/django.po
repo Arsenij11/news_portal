@@ -1,0 +1,143 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-15 11:42+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\templates\403.html:93
+msgid "ОШИБКА 403"
+msgstr ""
+
+#: .\templates\403.html:93
+msgid "ДОСТУП ЗАПРЕЩЁН"
+msgstr ""
+
+#: .\templates\account\email\base_message.txt:1
+#, python-format
+msgid "Добро пожаловать на сайт %(site_name)s!"
+msgstr ""
+
+#: .\templates\account\email\base_message.txt:5
+msgid "Спасибо, что вы с нами! "
+msgstr ""
+
+#: .\templates\account\email\email_confirmation_message.txt:5
+#, python-format
+msgid ""
+"Вы получили это сообщение, потому что пользователь %(user_display)s указал "
+"этот email при регистрации на сайте %(site_domain)s.\n"
+"\n"
+"Для подтверждения регистрации пройдите по ссылке %(activate_url)s\n"
+"\n"
+"Хорошего дня!\n"
+msgstr ""
+
+#: .\templates\article_create.html:5
+msgid "Статья"
+msgstr ""
+
+#: .\templates\article_delete.html:5
+msgid "Удаление статьи"
+msgstr ""
+
+#: .\templates\article_delete.html:26
+msgid "Удаляем статью"
+msgstr ""
+
+#: .\templates\concrete_news.html:30 .\templates\news.html:42
+#: .\templates\news_search.html:41 .\templates\subscriptions.html:43
+msgid "Заголовок"
+msgstr ""
+
+#: .\templates\concrete_news.html:31 .\templates\news.html:44
+#: .\templates\news_search.html:43 .\templates\subscriptions.html:45
+msgid "Текст новости/статьи"
+msgstr ""
+
+#: .\templates\concrete_news.html:32 .\templates\news.html:43
+#: .\templates\news_search.html:42 .\templates\subscriptions.html:44
+msgid "Дата публикации"
+msgstr ""
+
+#: .\templates\concrete_news.html:42 .\templates\news.html:77
+#: .\templates\subscriptions.html:79
+msgid "Свежих новостей нет!!!"
+msgstr ""
+
+#: .\templates\invalid_articles_edit.html:10
+msgid ""
+"Вы пытаетесь редактировать/удалить новость на странице с редактированием/"
+"удалением статьи"
+msgstr ""
+
+#: .\templates\invalid_news_edit.html:10
+msgid ""
+"Вы пытаетесь редактировать/удалить статью на странице с редактированием/"
+"удалением новости"
+msgstr ""
+
+#: .\templates\news.html:10 .\templates\news_search.html:12
+#: .\templates\subscriptions.html:10
+msgid "Все новости/статьи"
+msgstr ""
+
+#: .\templates\news.html:30 .\templates\subscriptions.html:33
+msgid "Добавить новость"
+msgstr ""
+
+#: .\templates\news.html:34 .\templates\subscriptions.html:37
+msgid "Добавить статью"
+msgstr ""
+
+#: .\templates\news.html:37
+msgid "Найти новость"
+msgstr ""
+
+#: .\templates\news.html:45 .\templates\news_search.html:44
+#: .\templates\subscriptions.html:46
+msgid "Категория"
+msgstr ""
+
+#: .\templates\news.html:60 .\templates\news_search.html:59
+msgid "Изменить новость"
+msgstr ""
+
+#: .\templates\news.html:62 .\templates\news_search.html:61
+msgid "Изменить статью"
+msgstr ""
+
+#: .\templates\news.html:67 .\templates\news_search.html:66
+msgid "Удалить новость"
+msgstr ""
+
+#: .\templates\news.html:69 .\templates\news_search.html:68
+msgid "Удалить статью"
+msgstr ""
+
+#: .\templates\news_create.html:5
+msgid "Новость"
+msgstr ""
+
+#: .\templates\news_delete.html:25
+msgid "Удаляем новость"
+msgstr ""
+
+#: .\templates\subscriptions.html:28
+msgid "Подписаться"
+msgstr ""
