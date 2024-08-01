@@ -37,20 +37,21 @@ class PostDetail(DetailView):
     def get_object(self, *args, **kwargs):  # переопределяем метод получения объекта, как ни странно
         obj = cache.get(f'post-{self.kwargs["id"]}', None)  # кэш очень похож на словарь, и метод get действует так же. Он забирает значение по ключу, если его нет, то забирает None.
 
-        print('---------------------')
-        print(obj)
-        print('---------------------')
-
         # если объекта нет в кэше, то получаем его и записываем в кэш
         if not obj:
             obj = super().get_object(queryset=self.queryset)
             cache.set(f'post-{self.kwargs["id"]}', obj)
 
-        print('***********************')
-        print(obj)
-        print('***********************')
-
         return obj
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["current_time"] = timezone.localtime(timezone.now())
+        context["timezones"] = pytz.common_timezones
+        return context
+    def post(self, request, **kwargs):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect(f'/news/{self.kwargs["id"]}')
 
 class PostSearch(ListView):
     model = Post
@@ -86,8 +87,9 @@ class NewsCreate(PermissionRequiredMixin, CreateView):
         news = form.save(commit=False)
         news.type_post = 'NE'
         news.save()
-        notify_about_new_post.apply_async([news.id])
+        # notify_about_new_post.apply_async([news.id])
         return super().form_valid(form)
+
 
 
 class NewsEdit(PermissionRequiredMixin, UpdateView):
@@ -95,6 +97,7 @@ class NewsEdit(PermissionRequiredMixin, UpdateView):
     model = Post
     form_class = Newsform
     template_name = 'news_create.html'
+
     def dispatch(self, request, *args, **kwargs):
         post = self.get_object()
 
@@ -104,6 +107,8 @@ class NewsEdit(PermissionRequiredMixin, UpdateView):
             return render(self.request, template_name='invalid_news_edit.html', context=context)
 
         return super(NewsEdit, self).dispatch(request, *args, **kwargs)
+
+
 class NewsDelete(PermissionRequiredMixin, DeleteView):
     permission_required = ('news_bd.delete_post')
     model = Post
@@ -120,7 +125,7 @@ class NewsDelete(PermissionRequiredMixin, DeleteView):
 
         return super(NewsDelete, self).dispatch(request, *args, **kwargs)
 
-# Create your views here.
+
 class ArticleCreate(PermissionRequiredMixin,CreateView):
     permission_required = ('news_bd.add_post')
     model = Post

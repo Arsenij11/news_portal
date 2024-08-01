@@ -1,177 +1,130 @@
-openapi: 3.0.2
-info:
-  title: 'News'
-  version: '0.1'
-paths:
-  /news/:
+openapi: 3.0.2 # Описание версии OpenAPI. Мы используем самую новую — 3.0.2.
+info: # Категория info
+  title: 'News portal' # Описание приложения
+  version: '0.1' # Версия приложения
+paths: # Группа 'paths' со всеми возможными путями
+  /news/?page={number_of_page}: # Путь
     get:
-      operationId: listNews
-      description: 'List of news'
+      operationId: getPostList
+      description: 'List of posts'
+      parameters: # Параметры, которые получает сервер от клиента
+      - name: number_of_page # Название параметра
+        in: path
+        required: true
+        description: 'Number of page'
+        schema:
+          type: string
+      responses: # Описание ответов от сервера
+        '200': # В случае если, код 200
+          content: # В каком формате клиент получает данные:
+            application/json: # В данном случае, в формате json
+              schema: # Формат ответа
+                type: array
+          description: ''
+      tags: # Категория tags — это просто список тегов, чтобы не заблудиться в огромном количестве всевозможных запросов
+      - posts
+  /news/{id}:
+    get:
+      operationId: getPostOne
+      description: 'Get concrete post by "id"'
       parameters:
-      - name: limit
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
-      - name: offset
-        required: false
-        in: query
-        description: The initial index from which to return the results.
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          description: 'post id'
+          schema:
+            type: string
       responses:
         '200':
           content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  count:
-                    type: integer
-                    example: 123
-                  next:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=400&limit=100
-                  previous:
-                    type: string
-                    nullable: true
-                    format: uri
-                    example: http://api.example.org/accounts/?offset=200&limit=100
-                  results:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Author'
+            application/json: # В данном случае, в формате json
+              schema: # Формат ответа
+                type: array
           description: ''
       tags:
-      - authors
+        - posts
+  /news/search?title__icontains={title}&category={number_of_category}&added_after={added_after}&page={number_of_page}:
+    get:
+      operationId: getPostSearch
+      description: 'Search news by title, category, date'
+      parameters:
+        - name: title
+          in: path
+          required: false
+          description: 'title contains'
+          schema:
+            type: string
+        - name: number_of_category
+          in: path
+          required: false
+          description: 'number of category'
+          schema:
+            type: string
+        - name: added_after
+          in: path
+          required: false
+          description: ''
+          schema:
+            type: string
+        - name: number_of_page # Название параметра
+          in: path
+          required: true
+          description: 'Number of page'
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json: # В данном случае, в формате json
+              schema: # Формат ответа
+                type: array
+          description: ''
+      tags:
+        - posts
+  /news/news/create:
     post:
-      operationId: createAuthor
-      description: ''
+      operationId: addNews
+      description: 'add fresh news'
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Author'
+              $ref: '#/components/schemas/New_post'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Author'
+              $ref: '#/components/schemas/New_post'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Author'
+              $ref: '#/components/schemas/New_post'
       responses:
         '201':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Author'
+                type: array
           description: ''
       tags:
-      - authors
-  /news/{id}/:
-    get:
-      operationId: retrieveNews
-      description: ''
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/News'
-          description: ''
-      tags:
-      - news
-    put:
-      operationId: updateNews
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this author.
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/News'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/News'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/News'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/News'
-          description: ''
-      tags:
-      - authors
-    patch:
-      operationId: partialUpdateAuthor
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this author.
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/News'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/News'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/News'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/News'
-          description: ''
-      tags:
-      - authors
-    delete:
-      operationId: destroyAuthor
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this author.
-        schema:
-          type: string
-      responses:
-        '204':
-          description: ''
-      tags:
-      - authors
+        - news
 components:
   schemas:
-    News:
+    New_post:
       type: object
       properties:
+        author:
+          type: integer
+        category:
+          type: string
+          maxLength: 64
         title:
           type: string
+          maxLength: 100
+          minLength: 30
         text:
           type: string
-        type_post:
-          type: string
-        time_post:
-          type: datetime
-        rating:
-          type: float
+          minLength: 50
+      required:
+        - author
+        - category
+        - title
+        - text
