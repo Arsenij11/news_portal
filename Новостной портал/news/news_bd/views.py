@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from .models import Post, Category
 from .filters import Postfilter
 from .forms import Newsform, Articleform
@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .tasks import notify_about_new_post
+# from .tasks import notify_about_new_post
 from django.core.cache import cache # импортируем наш кэш
 from django.utils import timezone
 import pytz #  импортируем стандартный модуль для работы с часовыми поясами
@@ -113,7 +113,7 @@ class NewsDelete(PermissionRequiredMixin, DeleteView):
     permission_required = ('news_bd.delete_post')
     model = Post
     template_name = 'news_delete.html'
-    success_url = reverse_lazy('post_list')
+    success_url = reverse_lazy('successful_delete')
 
     def dispatch(self, request, *args, **kwargs):
         post = self.get_object()
@@ -157,7 +157,7 @@ class ArticleDelete(PermissionRequiredMixin, DeleteView):
     permission_required = ('news_bd.delete_post')
     model = Post
     template_name = 'article_delete.html'
-    success_url = reverse_lazy('post_list')
+    success_url = reverse_lazy('successful_delete')
 
     def dispatch(self, request, *args, **kwargs):
         post = self.get_object()
@@ -197,3 +197,6 @@ def subscribe(request, pk):
 
     message = gettext("Вы успешно подписались на рассылку новостей категории ")
     return render(request, 'subscribe.html', {'category': category, 'message':message})
+
+def successfuldelete(request):
+    return render(request, 'successful_deleting.html')

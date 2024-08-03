@@ -17,9 +17,345 @@ paths: # Группа 'paths' со всеми возможными путями
       responses: # Описание ответов от сервера
         '200': # В случае если, код 200
           content: # В каком формате клиент получает данные:
-            application/json: # В данном случае, в формате json
+            text/html: # В данном случае, в формате html
               schema: # Формат ответа
-                type: array
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html lang="en">
+                    <head>
+                        <meta charset="utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                        <meta name="description" content="" />
+                        <meta name="author" content="" />
+                        <title>
+                         News
+                        </title>
+                
+                
+                    
+                        <link href="/static/css/styles.css" rel="stylesheet" />
+                        <style>
+                            body {background-color:  powderblue ;}
+                        </style>
+                    </head>
+                    <body>
+                     <!-- Загружаем кэширование -->
+                    
+                        <!-- Responsive navbar-->
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                          <div class="container">
+                         <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                         <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                 data-target="#navbarResponsive"
+                                 aria-controls="navbarResponsive" aria-expanded="false"
+                                 aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                         </button>
+                  
+                          </div>
+                        </nav>
+                    
+                     <!-- Page content-->
+                        <div class="container">
+                        <div class="row">
+                        <div class="col-lg-12 text-center">
+                                   
+                       <br>
+                       <h1>Все новости/статьи</h1>
+                       <br>
+                       <form action="/i18n/setlang/" method="POST"> 
+                       <input type="hidden" name="csrfmiddlewaretoken" value="uqV8pJMy1VyNaCUIICnqLNaaIeoF9qk8aVq20g2KNFSHBXCF5jlJwS7PGcJA9ljw"> <!-- Не забываем по csrf_token для POST запросов -->
+                            <input type="hidden" name="next" value="">
+                            <select name="language" id="">
+                                 <!-- получаем языки -->
+                                 <!-- Помещаем их в список languages -->
+                                
+                                 <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                    <option value="en" >
+                                        English - en
+                                    </option>
+                                 <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                    <option value="ru"  selected >
+                                        Русский - ru
+                                    </option>
+                                
+                            </select>
+                            <input type="submit" value="set">
+                        </form>
+                        <br>
+                    
+                        <form action="" method="POST">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="uqV8pJMy1VyNaCUIICnqLNaaIeoF9qk8aVq20g2KNFSHBXCF5jlJwS7PGcJA9ljw">
+                            <label for="timezone">Выберите свой часовой пояс:</label>
+                            <select name="timezone">
+                                
+                        
+                                
+                            </select>
+                            <input type="submit" value="Set">
+                        </form>
+                 
+                        Europe/Moscow
+                    2 августа 2024 г. 10:04 <!-- Отображаем время в выбранном часовом поясе  -->
+                    <hr>
+                    <p style="text-align:left">
+                    
+                    <a href="/news/news/create">Добавить новость</a>
+                    <br>
+                    
+                    
+                    <a href="/news/articles/create">Добавить статью</a>
+                    <br>
+                    
+                    <a href="/news/search">Найти новость</a>
+                    </p>
+                   
+                          <table align="center" border = "1">
+                        <tr>
+                            <th>Заголовок</th>
+                            <th>Дата публикации</th>
+                            <th>Текст новости/статьи</th>
+                            <th>Категория</th>
+                        </tr>
+                
+                       
+                        <tr>
+                            <td>Станцию метро «Чернышевская» открыли после реконструкции</td>
+                            <td>28 июля 2024 г. 23:50</td>
+                            <td>Станция метро «Чернышевская» открылась для пассажиров после реконструкции. Она была закрыта с 2022 года.</td>
+                            <td>
+                                
+                                <a href = "/news/categories/2">Новости Санкт-Петербурга</a>
+                                
+                            </td>
+                            <td>
+                                
+                                <a href="/news/news/81/edit">Изменить новость</a>
+                                
+                            </td>
+                             <td>
+                                
+                                <a href="/news/news/81/delete">Удалить новость</a>
+                                
+                            </td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Культура Древней Месопотамии</td>
+                            <td>23 апреля 2024 г. 5:53</td>
+                            <td>Культура Месопотамии не является однородной по своему составу. В ее создании и становлении участвовали шумеры, вавилоняне, ассирийцы, хурриты, хетты, эламиты …</td>
+                            <td>
+                                
+                                <a href = "/news/categories/4">Культура</a>
+                                
+                            </td>
+                            <td>
+                                
+                                    <a href="/news/articles/60/edit">Изменить статью</a>
+                                
+                            </td>
+                             <td>
+                                
+                                    <a href="/news/articles/60/delete">Удалить статью</a>
+                                
+                            </td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Загруженность гостиниц Петербурга в майские праздники достигнет 95%</td>
+                            <td>22 апреля 2024 г. 9:01</td>
+                            <td>С 28 апреля по 1 мая 2024 года средняя загруженность гостиниц, отелей и хостелов в Санкт-Петербурге составит более 80%. Об …</td>
+                            <td>
+                                
+                                <a href = "/news/categories/2">Новости Санкт-Петербурга</a>
+                                
+                            </td>
+                            <td>
+                                
+                                <a href="/news/news/48/edit">Изменить новость</a>
+                                
+                            </td>
+                             <td>
+                                
+                                <a href="/news/news/48/delete">Удалить новость</a>
+                                
+                            </td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Культурологическая проблематика в трудах представителей европейского просвещения</td>
+                            <td>3 апреля 2024 г. 21:31</td>
+                            <td>Бэкон считал, что культура — сложный феномен. Она проявляется во всех сферах деятельности людей, но главными ее элементами являются наука …</td>
+                            <td>
+                                
+                                <a href = "/news/categories/4">Культура</a>
+                                
+                            </td>
+                            <td>
+                                
+                                    <a href="/news/articles/47/edit">Изменить статью</a>
+                                
+                            </td>
+                             <td>
+                                
+                                    <a href="/news/articles/47/delete">Удалить статью</a>
+                                
+                            </td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Русский музей показал рисунки великой княгини Ольги Александровны.</td>
+                            <td>3 апреля 2024 г. 18:35</td>
+                            <td>Сегодня бесценные работы прибыли в Русский музей для хранения и последующего экспонирования.</td>
+                            <td>
+                                
+                                <a href = "/news/categories/2">Новости Санкт-Петербурга</a>
+                                
+                                <a href = "/news/categories/4">Культура</a>
+                                
+                            </td>
+                            <td>
+                                
+                                <a href="/news/news/45/edit">Изменить новость</a>
+                                
+                            </td>
+                             <td>
+                                
+                                <a href="/news/news/45/delete">Удалить новость</a>
+                                
+                            </td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Opera стал первым браузером с доступом к локальным ИИ-моделям</td>
+                            <td>3 апреля 2024 г. 18:11</td>
+                            <td>Для работы нейросетей не понадобится интернет. Но скорость зависит от мощности компьютера. В браузере Opera появилась поддержка 150 локальных вариантов …</td>
+                            <td>
+                                
+                                <a href = "/news/categories/3">Технологии</a>
+                                
+                            </td>
+                            <td>
+                                
+                                <a href="/news/news/44/edit">Изменить новость</a>
+                                
+                            </td>
+                             <td>
+                                
+                                <a href="/news/news/44/delete">Удалить новость</a>
+                                
+                            </td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Обновление One UI для Samsung Galaxy привело к перегреву при зарядке</td>
+                            <td>3 апреля 2024 г. 18:02</td>
+                            <td>Обновление оболочки One UI 6.1 для ряда смартфонов Samsung Galaxy привело к перегреву устройств при зарядке. О проблеме рассказал портал …</td>
+                            <td>
+                                
+                                <a href = "/news/categories/3">Технологии</a>
+                                
+                            </td>
+                            <td>
+                                
+                                <a href="/news/news/39/edit">Изменить новость</a>
+                                
+                            </td>
+                             <td>
+                                
+                                <a href="/news/news/39/delete">Удалить новость</a>
+                                
+                            </td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Apple разработала ИИ, который понимает человека лучше GPT-4</td>
+                            <td>3 апреля 2024 г. 17:58</td>
+                            <td>Научные сотрудники Apple разработали систему искусственного интеллекта ReALM (Reference Resolution as Language Modeling), способную существенно улучшить понимание человека голосовыми помощниками …</td>
+                            <td>
+                                
+                                <a href = "/news/categories/3">Технологии</a>
+                                
+                            </td>
+                            <td>
+                                
+                                <a href="/news/news/37/edit">Изменить новость</a>
+                                
+                            </td>
+                             <td>
+                                
+                                <a href="/news/news/37/delete">Удалить новость</a>
+                                
+                            </td>
+                        </tr>
+                            
+                        <tr>
+                            <td>Пассажиры «Площади Восстания» нашли опечатку на указателе станции</td>
+                            <td>3 апреля 2024 г. 17:54</td>
+                            <td>На станции метро «Площадь Восстания» обнаружили опечатку. Она «спряталась» на световом указателе станции. — Выходь в город, — гласит надпись …</td>
+                            <td>
+                                
+                                <a href = "/news/categories/2">Новости Санкт-Петербурга</a>
+                                
+                            </td>
+                            <td>
+                                
+                                <a href="/news/news/36/edit">Изменить новость</a>
+                                
+                            </td>
+                             <td>
+                                
+                                <a href="/news/news/36/delete">Удалить новость</a>
+                                
+                            </td>
+                        </tr>
+                            
+                        <tr>
+                            <td>В метро Санкт-Петербурга начнут тестировать оплату лицом</td>
+                            <td>3 апреля 2024 г. 17:45</td>
+                            <td>В метрополитене Санкт-Петербурга может появиться возможность оплаты проезда с использованием биометрии. Запустить пилотный проект собираются на 1-3 станциях не ранее …</td>
+                            <td>
+                                
+                                <a href = "/news/categories/2">Новости Санкт-Петербурга</a>
+                                
+                                <a href = "/news/categories/3">Технологии</a>
+                                
+                            </td>
+                            <td>
+                                
+                                <a href="/news/news/32/edit">Изменить новость</a>
+                                
+                            </td>
+                             <td>
+                                
+                                <a href="/news/news/32/delete">Удалить новость</a>
+                                
+                            </td>
+                        </tr>
+                            
+                    </table>
+                
+                   
+                
+                    
+                
+                    1
+                
+                    
+                         <a href ="?page=2">2</a>
+                        
+                            ...
+                        <a href ="?page=4">4</a>
+                        
+                    
+                
+                
+                               </div>
+                           </div>
+                        </div>
+                    </body>
+                  </html>
           description: ''
       tags: # Категория tags — это просто список тегов, чтобы не заблудиться в огромном количестве всевозможных запросов
       - posts
@@ -37,9 +373,122 @@ paths: # Группа 'paths' со всеми возможными путями
       responses:
         '200':
           content:
-            application/json: # В данном случае, в формате json
+            text/html: # В данном случае, в формате html
               schema: # Формат ответа
-                type: array
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html lang="en">
+                    <head>
+                        <meta charset="utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                        <meta name="description" content="" />
+                        <meta name="author" content="" />
+                        <title>
+                         News
+                        </title>
+
+
+
+                        <link href="/static/css/styles.css" rel="stylesheet" />
+                        <style>
+                            body {background-color:  powderblue ;}
+                        </style>
+                    </head>
+                    <body>
+                     <!-- Загружаем кэширование -->
+
+                        <!-- Responsive navbar-->
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                          <div class="container">
+                         <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                         <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                 data-target="#navbarResponsive"
+                                 aria-controls="navbarResponsive" aria-expanded="false"
+                                 aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                         </button>
+
+                          </div>
+                        </nav>
+
+                     <!-- Page content-->
+                        <div class="container">
+                        <div class="row">
+                        <div class="col-lg-12 text-center">
+
+                       <br>
+                       <h1>Все новости/статьи</h1>
+                       <br>
+                       <form action="/i18n/setlang/" method="POST"> 
+                       <input type="hidden" name="csrfmiddlewaretoken" value="uqV8pJMy1VyNaCUIICnqLNaaIeoF9qk8aVq20g2KNFSHBXCF5jlJwS7PGcJA9ljw"> <!-- Не забываем по csrf_token для POST запросов -->
+                            <input type="hidden" name="next" value="">
+                            <select name="language" id="">
+                                 <!-- получаем языки -->
+                                 <!-- Помещаем их в список languages -->
+
+                                 <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                    <option value="en" >
+                                        English - en
+                                    </option>
+                                 <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                    <option value="ru"  selected >
+                                        Русский - ru
+                                    </option>
+
+                            </select>
+                            <input type="submit" value="set">
+                        </form>
+                        <br>
+
+                        <form action="" method="POST">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="uqV8pJMy1VyNaCUIICnqLNaaIeoF9qk8aVq20g2KNFSHBXCF5jlJwS7PGcJA9ljw">
+                            <label for="timezone">Выберите свой часовой пояс:</label>
+                            <select name="timezone">
+
+
+
+                            </select>
+                            <input type="submit" value="Set">
+                        </form>
+
+                        Europe/Moscow
+                    2 августа 2024 г. 10:04 <!-- Отображаем время в выбранном часовом поясе  -->
+                    <hr>
+                    <p style="text-align:left">
+
+                    <a href="/news/news/create">Добавить новость</a>
+                    <br>
+
+
+                    <a href="/news/articles/create">Добавить статью</a>
+                    <br>
+
+                    <a href="/news/search">Найти новость</a>
+                    </p>
+
+                          <table align="center" border = "1">
+                            <tr>
+                                <th>Заголовок</th>
+                                <th>Текст новости/статьи</th>
+                                <th>Дата публикации</th>
+                            </tr>
+                            <tr>
+                                <td>На «красной» ветке метро Петербурга остановили движение из-за человека на путях</td>
+                                <td>В Петербурге частично приостановили движение на «красной» линии метро из-за человека на рельсах. Как сообщили в пресс-службе метрополитена, поезда не едут от станции «Проспект Ветеранов» до станции «Нарвская». По данным «Фонтанки», человек упал на рельсы на станции «Автово».</td>
+                                <td>20 Мар 2024</td>
+                            </tr>
+                          </table>
+
+
+
+
+
+                               </div>
+                           </div>
+                        </div>
+                    </body>
+                  </html>
           description: ''
       tags:
         - posts
@@ -75,9 +524,345 @@ paths: # Группа 'paths' со всеми возможными путями
       responses:
         '200':
           content:
-            application/json: # В данном случае, в формате json
+            text/html: # В данном случае, в формате html
               schema: # Формат ответа
-                type: array
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html lang="en">
+                    <head>
+                        <meta charset="utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                        <meta name="description" content="" />
+                        <meta name="author" content="" />
+                        <title>
+                         News
+                        </title>
+
+
+
+                        <link href="/static/css/styles.css" rel="stylesheet" />
+                        <style>
+                            body {background-color:  powderblue ;}
+                        </style>
+                    </head>
+                    <body>
+                     <!-- Загружаем кэширование -->
+
+                        <!-- Responsive navbar-->
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                          <div class="container">
+                         <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                         <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                 data-target="#navbarResponsive"
+                                 aria-controls="navbarResponsive" aria-expanded="false"
+                                 aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                         </button>
+
+                          </div>
+                        </nav>
+
+                     <!-- Page content-->
+                        <div class="container">
+                        <div class="row">
+                        <div class="col-lg-12 text-center">
+
+                       <br>
+                       <h1>Все новости/статьи</h1>
+                       <br>
+                       <form action="/i18n/setlang/" method="POST"> 
+                       <input type="hidden" name="csrfmiddlewaretoken" value="uqV8pJMy1VyNaCUIICnqLNaaIeoF9qk8aVq20g2KNFSHBXCF5jlJwS7PGcJA9ljw"> <!-- Не забываем по csrf_token для POST запросов -->
+                            <input type="hidden" name="next" value="">
+                            <select name="language" id="">
+                                 <!-- получаем языки -->
+                                 <!-- Помещаем их в список languages -->
+
+                                 <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                    <option value="en" >
+                                        English - en
+                                    </option>
+                                 <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                    <option value="ru"  selected >
+                                        Русский - ru
+                                    </option>
+
+                            </select>
+                            <input type="submit" value="set">
+                        </form>
+                        <br>
+
+                        <form action="" method="POST">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="uqV8pJMy1VyNaCUIICnqLNaaIeoF9qk8aVq20g2KNFSHBXCF5jlJwS7PGcJA9ljw">
+                            <label for="timezone">Выберите свой часовой пояс:</label>
+                            <select name="timezone">
+
+
+
+                            </select>
+                            <input type="submit" value="Set">
+                        </form>
+
+                        Europe/Moscow
+                    2 августа 2024 г. 10:04 <!-- Отображаем время в выбранном часовом поясе  -->
+                    <hr>
+                    <p style="text-align:left">
+
+                    <a href="/news/news/create">Добавить новость</a>
+                    <br>
+
+
+                    <a href="/news/articles/create">Добавить статью</a>
+                    <br>
+
+                    <a href="/news/search">Найти новость</a>
+                    </p>
+
+                          <table align="center" border = "1">
+                        <tr>
+                            <th>Заголовок</th>
+                            <th>Дата публикации</th>
+                            <th>Текст новости/статьи</th>
+                            <th>Категория</th>
+                        </tr>
+
+
+                        <tr>
+                            <td>Станцию метро «Чернышевская» открыли после реконструкции</td>
+                            <td>28 июля 2024 г. 23:50</td>
+                            <td>Станция метро «Чернышевская» открылась для пассажиров после реконструкции. Она была закрыта с 2022 года.</td>
+                            <td>
+
+                                <a href = "/news/categories/2">Новости Санкт-Петербурга</a>
+
+                            </td>
+                            <td>
+
+                                <a href="/news/news/81/edit">Изменить новость</a>
+
+                            </td>
+                             <td>
+
+                                <a href="/news/news/81/delete">Удалить новость</a>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Культура Древней Месопотамии</td>
+                            <td>23 апреля 2024 г. 5:53</td>
+                            <td>Культура Месопотамии не является однородной по своему составу. В ее создании и становлении участвовали шумеры, вавилоняне, ассирийцы, хурриты, хетты, эламиты …</td>
+                            <td>
+
+                                <a href = "/news/categories/4">Культура</a>
+
+                            </td>
+                            <td>
+
+                                    <a href="/news/articles/60/edit">Изменить статью</a>
+
+                            </td>
+                             <td>
+
+                                    <a href="/news/articles/60/delete">Удалить статью</a>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Загруженность гостиниц Петербурга в майские праздники достигнет 95%</td>
+                            <td>22 апреля 2024 г. 9:01</td>
+                            <td>С 28 апреля по 1 мая 2024 года средняя загруженность гостиниц, отелей и хостелов в Санкт-Петербурге составит более 80%. Об …</td>
+                            <td>
+
+                                <a href = "/news/categories/2">Новости Санкт-Петербурга</a>
+
+                            </td>
+                            <td>
+
+                                <a href="/news/news/48/edit">Изменить новость</a>
+
+                            </td>
+                             <td>
+
+                                <a href="/news/news/48/delete">Удалить новость</a>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Культурологическая проблематика в трудах представителей европейского просвещения</td>
+                            <td>3 апреля 2024 г. 21:31</td>
+                            <td>Бэкон считал, что культура — сложный феномен. Она проявляется во всех сферах деятельности людей, но главными ее элементами являются наука …</td>
+                            <td>
+
+                                <a href = "/news/categories/4">Культура</a>
+
+                            </td>
+                            <td>
+
+                                    <a href="/news/articles/47/edit">Изменить статью</a>
+
+                            </td>
+                             <td>
+
+                                    <a href="/news/articles/47/delete">Удалить статью</a>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Русский музей показал рисунки великой княгини Ольги Александровны.</td>
+                            <td>3 апреля 2024 г. 18:35</td>
+                            <td>Сегодня бесценные работы прибыли в Русский музей для хранения и последующего экспонирования.</td>
+                            <td>
+
+                                <a href = "/news/categories/2">Новости Санкт-Петербурга</a>
+
+                                <a href = "/news/categories/4">Культура</a>
+
+                            </td>
+                            <td>
+
+                                <a href="/news/news/45/edit">Изменить новость</a>
+
+                            </td>
+                             <td>
+
+                                <a href="/news/news/45/delete">Удалить новость</a>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Opera стал первым браузером с доступом к локальным ИИ-моделям</td>
+                            <td>3 апреля 2024 г. 18:11</td>
+                            <td>Для работы нейросетей не понадобится интернет. Но скорость зависит от мощности компьютера. В браузере Opera появилась поддержка 150 локальных вариантов …</td>
+                            <td>
+
+                                <a href = "/news/categories/3">Технологии</a>
+
+                            </td>
+                            <td>
+
+                                <a href="/news/news/44/edit">Изменить новость</a>
+
+                            </td>
+                             <td>
+
+                                <a href="/news/news/44/delete">Удалить новость</a>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Обновление One UI для Samsung Galaxy привело к перегреву при зарядке</td>
+                            <td>3 апреля 2024 г. 18:02</td>
+                            <td>Обновление оболочки One UI 6.1 для ряда смартфонов Samsung Galaxy привело к перегреву устройств при зарядке. О проблеме рассказал портал …</td>
+                            <td>
+
+                                <a href = "/news/categories/3">Технологии</a>
+
+                            </td>
+                            <td>
+
+                                <a href="/news/news/39/edit">Изменить новость</a>
+
+                            </td>
+                             <td>
+
+                                <a href="/news/news/39/delete">Удалить новость</a>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Apple разработала ИИ, который понимает человека лучше GPT-4</td>
+                            <td>3 апреля 2024 г. 17:58</td>
+                            <td>Научные сотрудники Apple разработали систему искусственного интеллекта ReALM (Reference Resolution as Language Modeling), способную существенно улучшить понимание человека голосовыми помощниками …</td>
+                            <td>
+
+                                <a href = "/news/categories/3">Технологии</a>
+
+                            </td>
+                            <td>
+
+                                <a href="/news/news/37/edit">Изменить новость</a>
+
+                            </td>
+                             <td>
+
+                                <a href="/news/news/37/delete">Удалить новость</a>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Пассажиры «Площади Восстания» нашли опечатку на указателе станции</td>
+                            <td>3 апреля 2024 г. 17:54</td>
+                            <td>На станции метро «Площадь Восстания» обнаружили опечатку. Она «спряталась» на световом указателе станции. — Выходь в город, — гласит надпись …</td>
+                            <td>
+
+                                <a href = "/news/categories/2">Новости Санкт-Петербурга</a>
+
+                            </td>
+                            <td>
+
+                                <a href="/news/news/36/edit">Изменить новость</a>
+
+                            </td>
+                             <td>
+
+                                <a href="/news/news/36/delete">Удалить новость</a>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>В метро Санкт-Петербурга начнут тестировать оплату лицом</td>
+                            <td>3 апреля 2024 г. 17:45</td>
+                            <td>В метрополитене Санкт-Петербурга может появиться возможность оплаты проезда с использованием биометрии. Запустить пилотный проект собираются на 1-3 станциях не ранее …</td>
+                            <td>
+
+                                <a href = "/news/categories/2">Новости Санкт-Петербурга</a>
+
+                                <a href = "/news/categories/3">Технологии</a>
+
+                            </td>
+                            <td>
+
+                                <a href="/news/news/32/edit">Изменить новость</a>
+
+                            </td>
+                             <td>
+
+                                <a href="/news/news/32/delete">Удалить новость</a>
+
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+
+
+
+                    1
+
+
+                         <a href ="?page=2">2</a>
+
+                            ...
+                        <a href ="?page=4">4</a>
+
+
+
+
+                               </div>
+                           </div>
+                        </div>
+                    </body>
+                  </html>
           description: ''
       tags:
         - posts
@@ -88,24 +873,991 @@ paths: # Группа 'paths' со всеми возможными путями
       parameters: []
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/New_post'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/New_post'
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/New_post'
       responses:
         '201':
           content:
-            application/json:
+            text/html:
               schema:
-                type: array
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html lang="en">
+                      <head>
+                          <meta charset="utf-8" />
+                          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                          <meta name="description" content="" />
+                          <meta name="author" content="" />
+                          <title>
+                  Concrete_News
+                  </title>
+                  
+                  
+                      
+                      <link href="/static/css/styles.css" rel="stylesheet" />
+                      <style>
+                          body {background-color:  powderblue ;}
+                      </style>
+                      </head>
+                      <body>
+                       <!-- Загружаем кэширование -->
+                      
+                          <!-- Responsive navbar-->
+                          <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                     <div class="container">
+                         <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                         <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                 data-target="#navbarResponsive"
+                                 aria-controls="navbarResponsive" aria-expanded="false"
+                                 aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                         </button>
+                  
+                     </div>
+                  </nav>
+                      
+                          <!-- Page content-->
+                                  <div class="container">
+                             <div class="row">
+                                 <div class="col-lg-12 text-center">
+                                     
+                      <h1>Новость/статья</h1>
+                      <br>
+                      <form action="/i18n/setlang/" method="POST"> 
+                          <input type="hidden" name="csrfmiddlewaretoken" value="BWzmTFddmV4SGk7c8U2UQPhhdITg9qMehr4guctp8FoM7FP9vB0dBUeWbGeb9lLC"> <!-- Не забываем по csrf_token для POST запросов -->
+                          <input type="hidden" name="next" value="">
+                          <select name="language" id="">
+                               <!-- получаем языки -->
+                               <!-- Помещаем их в список languages -->
+                              
+                               <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                  <option value="en" >
+                                      English - en
+                                  </option>
+                               <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                  <option value="ru"  selected >
+                                      Русский - ru
+                                  </option>
+                              
+                          </select>
+                          <input type="submit" value="set">
+                  </form>
+                  <br>
+                      
+                      <form action="" method="POST">
+                          <input type="hidden" name="csrfmiddlewaretoken" value="BWzmTFddmV4SGk7c8U2UQPhhdITg9qMehr4guctp8FoM7FP9vB0dBUeWbGeb9lLC">
+                          <label for="timezone">Выберите свой часовой пояс:</label>
+                          <select name="timezone">
+                              
+                              
+                              
+                          </select>
+                          <input type="submit" value="Set">
+                      </form>
+                  
+                      Europe/Moscow
+                      2 августа 2024 г. 11:14 <!-- Отображаем время в выбранном часовом поясе  -->
+                     <hr>
+                     
+                            <table align="center" border = "1">
+                          <tr>
+                              <th>Заголовок</th>
+                              <th>Текст новости/статьи</th>
+                              <th>Дата публикации</th>
+                          </tr>
+                          <tr>
+                              <td>фывввввввввввввввввввввввввввввввввввввввв</td>
+                              <td>фыввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввфыаваааdasfffffffasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssasdafodpkdopsfkdospkfsdopfdpsofksdpofkdspofksdpofkdspofkdspofsdpofksdpofdskfsdpkfpdsofkpo</td>
+                              <td>02 Авг 2024</td>
+                          </tr>
+                      </table>
+                  
+                     
+                  
+                                 </div>
+                             </div>
+                          </div>
+                      </body>
+                  </html>
           description: ''
       tags:
         - news
+  /news/news/{id}/edit:
+    post:
+      operationId: editNews
+      description: 'To edit existing news'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 'news id'
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Edit_post'
+      responses:
+        '200':
+          content:
+            text/html: # В данном случае, в формате html
+              schema: # Формат ответа
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html lang="en">
+                      <head>
+                          <meta charset="utf-8" />
+                          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                          <meta name="description" content="" />
+                          <meta name="author" content="" />
+                          <title>
+                  Concrete_News
+                  </title>
+                  
+                  
+                      
+                      <link href="/static/css/styles.css" rel="stylesheet" />
+                      <style>
+                          body {background-color:  powderblue ;}
+                      </style>
+                      </head>
+                      <body>
+                       <!-- Загружаем кэширование -->
+                      
+                          <!-- Responsive navbar-->
+                          <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                     <div class="container">
+                         <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                         <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                 data-target="#navbarResponsive"
+                                 aria-controls="navbarResponsive" aria-expanded="false"
+                                 aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                         </button>
+                  
+                     </div>
+                  </nav>
+                      
+                          <!-- Page content-->
+                                  <div class="container">
+                             <div class="row">
+                                 <div class="col-lg-12 text-center">
+                                     
+                      <h1>Новость/статья</h1>
+                      <br>
+                      <form action="/i18n/setlang/" method="POST"> 
+                          <input type="hidden" name="csrfmiddlewaretoken" value="blLBVVYUENMiNbdjlbrpJ8yNK8UwUvOwRQgvwse6qx6cewVgISpIudvsI6frUqNU"> <!-- Не забываем по csrf_token для POST запросов -->
+                          <input type="hidden" name="next" value="">
+                          <select name="language" id="">
+                               <!-- получаем языки -->
+                               <!-- Помещаем их в список languages -->
+                              
+                               <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                  <option value="en" >
+                                      English - en
+                                  </option>
+                               <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                  <option value="ru"  selected >
+                                      Русский - ru
+                                  </option>
+                              
+                          </select>
+                          <input type="submit" value="set">
+                  </form>
+                  <br>
+                      
+                      <form action="" method="POST">
+                          <input type="hidden" name="csrfmiddlewaretoken" value="blLBVVYUENMiNbdjlbrpJ8yNK8UwUvOwRQgvwse6qx6cewVgISpIudvsI6frUqNU">
+                          <label for="timezone">Выберите свой часовой пояс:</label>
+                          <select name="timezone">
+                           
+                          </select>
+                          <input type="submit" value="Set">
+                      </form>
+                  
+                      Europe/Moscow
+                      2 августа 2024 г. 11:23 <!-- Отображаем время в выбранном часовом поясе  -->
+                     <hr>
+                     
+                            <table align="center" border = "1">
+                          <tr>
+                              <th>Заголовок</th>
+                              <th>Текст новости/статьи</th>
+                              <th>Дата публикации</th>
+                          </tr>
+                          <tr>
+                              <td>фывввввввввввввввввввввввввввввввввввввввв</td>
+                              <td>фыввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввфыаваааdasfffffffasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssasdafodpkdopsfkdospkfsdopfdpsofksdpofkdspofksdpofkdspofkdspofsdpofksdpofdskfsdpkfpdsofkpo</td>
+                              <td>02 Авг 2024</td>
+                          </tr>
+                      </table>
+                  
+                     
+                  
+                                 </div>
+                             </div>
+                          </div>
+                      </body>
+                  </html>
+          description: ''
+      tags:
+        - news
+  /news/news/{id}/delete:
+    post:
+      operationId: deleteNews
+      description: 'To delete existing news'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 'Choose id of news which you want delete'
+          schema:
+            type: string
+      responses:
+        '201':
+          content:
+            text/html:
+              schema:
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html lang="en">
+                      <head>
+                          <meta charset="utf-8" />
+                          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                          <meta name="description" content="" />
+                          <meta name="author" content="" />
+                          <title> </title>
+
+
+
+                      <link href="/static/css/styles.css" rel="stylesheet" />
+                  	<style>
+                          body {background-color:  powderblue ;}
+                      </style>
+                      </head>
+                      <body>
+                       <!-- Загружаем кэширование -->
+
+                          <!-- Responsive navbar-->
+                          <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                     <div class="container">
+                         <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                         <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                 data-target="#navbarResponsive"
+                                 aria-controls="navbarResponsive" aria-expanded="false"
+                                 aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                         </button>
+
+                     </div>
+                  </nav>
+
+                          <!-- Page content-->
+                                  <div class="container">
+                             <div class="row">
+                                 <div class="col-lg-12 text-center">
+
+                  <br>
+                  <h1>Новость/статья успешно удалена!</h1>
+                  <br>
+                  <form action="/i18n/setlang/" method="POST">
+                  		<input type="hidden" name="csrfmiddlewaretoken" value="SSL0JCiuNGydg2vbdrUG3gL39CHfXDBvyngUk9yGzqS7Hnd8A8SZOlII7A2aXyAT"> <!-- Не забываем по csrf_token для POST запросов -->
+                          <input type="hidden" name="next" value="">
+                          <select name="language" id="">
+                               <!-- получаем языки -->
+                               <!-- Помещаем их в список languages -->
+
+                               <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                  <option value="en" >
+                                      English - en
+                                  </option>
+                               <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                  <option value="ru"  selected >
+                                      Русский - ru
+                                  </option>
+
+                          </select>
+                          <input type="submit" value="set">
+                  </form>
+                  <hr>
+
+                                 </div>
+                             </div>
+                          </div>
+                      </body>
+                  </html>
+          description: ''
+      tags:
+        - news
+  /news/articles/create:
+    post:
+      operationId: addArticle
+      description: 'To add fresh article'
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/New_post'
+      responses:
+        '201':
+          content:
+            text/html:
+              schema:
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html lang="en">
+                      <head>
+                          <meta charset="utf-8" />
+                          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                          <meta name="description" content="" />
+                          <meta name="author" content="" />
+                          <title>
+                  Concrete_News
+                  </title>
+                  
+                  
+                      
+                      <link href="/static/css/styles.css" rel="stylesheet" />
+                      <style>
+                          body {background-color:  powderblue ;}
+                      </style>
+                      </head>
+                      <body>
+                       <!-- Загружаем кэширование -->
+                      
+                          <!-- Responsive navbar-->
+                          <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                     <div class="container">
+                         <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                         <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                 data-target="#navbarResponsive"
+                                 aria-controls="navbarResponsive" aria-expanded="false"
+                                 aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                         </button>
+                  
+                     </div>
+                  </nav>
+                      
+                          <!-- Page content-->
+                                  <div class="container">
+                             <div class="row">
+                                 <div class="col-lg-12 text-center">
+                                     
+                      <h1>Новость/статья</h1>
+                      <br>
+                      <form action="/i18n/setlang/" method="POST"> 
+                          <input type="hidden" name="csrfmiddlewaretoken" value="BWzmTFddmV4SGk7c8U2UQPhhdITg9qMehr4guctp8FoM7FP9vB0dBUeWbGeb9lLC"> <!-- Не забываем по csrf_token для POST запросов -->
+                          <input type="hidden" name="next" value="">
+                          <select name="language" id="">
+                               <!-- получаем языки -->
+                               <!-- Помещаем их в список languages -->
+                              
+                               <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                  <option value="en" >
+                                      English - en
+                                  </option>
+                               <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                  <option value="ru"  selected >
+                                      Русский - ru
+                                  </option>
+                              
+                          </select>
+                          <input type="submit" value="set">
+                  </form>
+                  <br>
+                      
+                      <form action="" method="POST">
+                          <input type="hidden" name="csrfmiddlewaretoken" value="BWzmTFddmV4SGk7c8U2UQPhhdITg9qMehr4guctp8FoM7FP9vB0dBUeWbGeb9lLC">
+                          <label for="timezone">Выберите свой часовой пояс:</label>
+                          <select name="timezone">
+                              
+                              
+                              
+                          </select>
+                          <input type="submit" value="Set">
+                      </form>
+                  
+                      Europe/Moscow
+                      2 августа 2024 г. 11:14 <!-- Отображаем время в выбранном часовом поясе  -->
+                     <hr>
+                     
+                            <table align="center" border = "1">
+                          <tr>
+                              <th>Заголовок</th>
+                              <th>Текст новости/статьи</th>
+                              <th>Дата публикации</th>
+                          </tr>
+                          <tr>
+                              <td>фывввввввввввввввввввввввввввввввввввввввв</td>
+                              <td>фыввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввфыаваааdasfffffffasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssasdafodpkdopsfkdospkfsdopfdpsofksdpofkdspofksdpofkdspofkdspofsdpofksdpofdskfsdpkfpdsofkpo</td>
+                              <td>02 Авг 2024</td>
+                          </tr>
+                      </table>
+                  
+                     
+                  
+                                 </div>
+                             </div>
+                          </div>
+                      </body>
+                  </html>
+          description: ''
+      tags:
+        - articles
+  /news/articles/{id}/edit:
+    post:
+      operationId: editArticle
+      description: 'To edit existing article'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 'article id'
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/New_post'
+      responses:
+        '201':
+          content:
+            text/html:
+              schema:
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html lang="en">
+                      <head>
+                          <meta charset="utf-8" />
+                          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                          <meta name="description" content="" />
+                          <meta name="author" content="" />
+                          <title>
+                  Concrete_News
+                  </title>
+
+
+
+                      <link href="/static/css/styles.css" rel="stylesheet" />
+                  	<style>
+                          body {background-color:  powderblue ;}
+                      </style>
+                      </head>
+                      <body>
+                       <!-- Загружаем кэширование -->
+
+                          <!-- Responsive navbar-->
+                          <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                     <div class="container">
+                         <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                         <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                 data-target="#navbarResponsive"
+                                 aria-controls="navbarResponsive" aria-expanded="false"
+                                 aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                         </button>
+
+                     </div>
+                  </nav>
+
+                          <!-- Page content-->
+                                  <div class="container">
+                             <div class="row">
+                                 <div class="col-lg-12 text-center">
+
+                      <h1>Новость/статья</h1>
+                  	<br>
+                  	<form action="/i18n/setlang/" method="POST"> 
+                  		<input type="hidden" name="csrfmiddlewaretoken" value="blLBVVYUENMiNbdjlbrpJ8yNK8UwUvOwRQgvwse6qx6cewVgISpIudvsI6frUqNU"> <!-- Не забываем по csrf_token для POST запросов -->
+                          <input type="hidden" name="next" value="">
+                          <select name="language" id="">
+                               <!-- получаем языки -->
+                               <!-- Помещаем их в список languages -->
+
+                               <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                  <option value="en" >
+                                      English - en
+                                  </option>
+                               <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                  <option value="ru"  selected >
+                                      Русский - ru
+                                  </option>
+
+                          </select>
+                          <input type="submit" value="set">
+                  </form>
+                  <br>
+
+                      <form action="" method="POST">
+                          <input type="hidden" name="csrfmiddlewaretoken" value="blLBVVYUENMiNbdjlbrpJ8yNK8UwUvOwRQgvwse6qx6cewVgISpIudvsI6frUqNU">
+                          <label for="timezone">Выберите свой часовой пояс:</label>
+                          <select name="timezone">
+
+                          </select>
+                          <input type="submit" value="Set">
+                      </form>
+
+                      Europe/Moscow
+                      2 августа 2024 г. 11:23 <!-- Отображаем время в выбранном часовом поясе  -->
+                     <hr>
+
+                            <table align="center" border = "1">
+                          <tr>
+                              <th>Заголовок</th>
+                              <th>Текст новости/статьи</th>
+                              <th>Дата публикации</th>
+                          </tr>
+                          <tr>
+                              <td>фывввввввввввввввввввввввввввввввввввввввв</td>
+                              <td>фыввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввфыаваааdasfffffffasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssasdafodpkdopsfkdospkfsdopfdpsofksdpofkdspofksdpofkdspofkdspofsdpofksdpofdskfsdpkfpdsofkpo</td>
+                              <td>02 Авг 2024</td>
+                          </tr>
+                      </table>
+
+
+
+                                 </div>
+                             </div>
+                          </div>
+                      </body>
+                  </html>
+          description: ''
+      tags:
+        - articles
+  /news/articles/{id}/delete:
+    post:
+      operationId: deleteArticle
+      description: 'To delete existing article'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 'Choose id of article which you want delete'
+          schema:
+            type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                                    <html lang="en">
+                                        <head>
+                                            <meta charset="utf-8" />
+                                            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                                            <meta name="description" content="" />
+                                            <meta name="author" content="" />
+                                            <title> </title>
+
+
+
+                                        <link href="/static/css/styles.css" rel="stylesheet" />
+                                    	<style>
+                                            body {background-color:  powderblue ;}
+                                        </style>
+                                        </head>
+                                        <body>
+                                         <!-- Загружаем кэширование -->
+
+                                            <!-- Responsive navbar-->
+                                            <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                                       <div class="container">
+                                           <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                                           <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                                   data-target="#navbarResponsive"
+                                                   aria-controls="navbarResponsive" aria-expanded="false"
+                                                   aria-label="Toggle navigation">
+                                               <span class="navbar-toggler-icon"></span>
+                                           </button>
+
+                                       </div>
+                                    </nav>
+
+                                            <!-- Page content-->
+                                                    <div class="container">
+                                               <div class="row">
+                                                   <div class="col-lg-12 text-center">
+
+                                    <br>
+                                    <h1>Новость/статья успешно удалена!</h1>
+                                    <br>
+                                    <form action="/i18n/setlang/" method="POST">
+                                    		<input type="hidden" name="csrfmiddlewaretoken" value="SSL0JCiuNGydg2vbdrUG3gL39CHfXDBvyngUk9yGzqS7Hnd8A8SZOlII7A2aXyAT"> <!-- Не забываем по csrf_token для POST запросов -->
+                                            <input type="hidden" name="next" value="">
+                                            <select name="language" id="">
+                                                 <!-- получаем языки -->
+                                                 <!-- Помещаем их в список languages -->
+
+                                                 <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                                    <option value="en" >
+                                                        English - en
+                                                    </option>
+                                                 <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                                    <option value="ru"  selected >
+                                                        Русский - ru
+                                                    </option>
+
+                                            </select>
+                                            <input type="submit" value="set">
+                                    </form>
+                                    <hr>
+
+                                                   </div>
+                                               </div>
+                                            </div>
+                                        </body>
+                  </html>
+          description: ''
+      tags:
+        - articles
+  /news/categories/{id}:
+    get:
+      operationId: getCategories
+      description: 'Sorting news by categories'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 'category id'
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            text/html:
+              schema:
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html lang="en">
+                  <head>
+                  <meta charset="utf-8" />
+                  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                  <meta name="description" content="" />
+                  <meta name="author" content="" />
+                  <title>
+                  Categories
+                  </title>
+                  
+                  
+                  
+                  <link href="/static/css/styles.css" rel="stylesheet" />
+                  <style>
+                  body {background-color: powderblue ;}
+                  </style>
+                  </head>
+                  <body>
+                  <!-- Загружаем кэширование -->
+                  
+                  <!-- Responsive navbar-->
+                  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                  <div class="container">
+                  <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse"
+                  data-target="#navbarResponsive"
+                  aria-controls="navbarResponsive" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+                  
+                  </div>
+                  </nav>
+                  
+                  <!-- Page content-->
+                  <div class="container">
+                  <div class="row">
+                  <div class="col-lg-12 text-center">
+
+                  <br>
+                  <h1>Все новости/статьи</h1>
+                  <br>
+                  <form action="/i18n/setlang/" method="POST">
+                  <input type="hidden" name="csrfmiddlewaretoken" value="9xb29dy6CCG1s5Af69R2aO6zc99ERys4P2GWKKOiom0VTqictQPlVT3ea7uzRtrs"> <!-- Не забываем по csrf_token для POST запросов -->
+                  <input type="hidden" name="next" value="">
+                  <select name="language" id="">
+                  <!-- получаем языки -->
+                  <!-- Помещаем их в список languages -->
+                  
+                  <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                  <option value="en" >
+                  English - en
+                  </option>
+                  <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                  <option value="ru"  selected >
+                  Русский - ru
+                  </option>
+                  
+                  </select>
+                  <input type="submit" value="set">
+                  </form>
+                  <br>
+                  
+                  <form action="" method="POST">
+                  <input type="hidden" name="csrfmiddlewaretoken" value="9xb29dy6CCG1s5Af69R2aO6zc99ERys4P2GWKKOiom0VTqictQPlVT3ea7uzRtrs">
+                  <label for="timezone">Выберите свой часовой пояс:</label>
+                  <select name="timezone">
+                  
+                  
+                  </select>
+                  <input type="submit" value="Set">
+                  </form>
+                  
+                  Europe/Moscow
+                  2 августа 2024 г. 11:28 <!-- Отображаем время в выбранном часовом поясе  -->
+                  <br>
+                  
+                  <hr>
+                  <p style="text-align:left">
+                  
+                  <a href="/news/news/create">Добавить новость</a>
+                  
+                  <br>
+                  
+                  <a href="/news/articles/create">Добавить статью</a>
+
+                  </p>
+                  
+                  <table align="center" border = "1">
+                  <tr>
+                  <th>Заголовок</th>
+                  <th>Дата публикации</th>
+                  <th>Текст новости/статьи</th>
+                  <th>Категория</th>
+                  </tr>
+                  
+                  
+                  <tr>
+                  <td>фывввввввввввввввввввввввввввввввввввввввв</td>
+                  <td>2 августа 2024 г. 11:14</td>
+                  <td>фыввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввввфыаваааdasfffffffasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssasdafodpkdopsfkdospkfsdopfdpsofksdpofkdspofksdpofkdspofkdspofsdpofksdpofdskfsdpkfpdsofkpo</td>
+                  <td>
+                  
+                  <a href = "/news/categories/1">Политика</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/articles/86/edit">Изменить статью</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/articles/86/delete">Удалить статью</a>
+                  
+                  </td>
+                  </tr>
+                  
+                  <tr>
+                  <td>Турция: партия Эрдогана проигрывает на муниципальных выборах</td>
+                  <td>3 апреля 2024 г. 17:36</td>
+                  <td>Представители оппозиционной Республиканской народной партии (РНП) лидируют в Анкаре и Стамбуле. Согласно предварительным результатам, мэр Стамбула Экрем Имамоглу опережает своего …</td>
+                  <td>
+                  
+                  <a href = "/news/categories/1">Политика</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/news/31/edit">Изменить новость</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/news/31/delete">Удалить новость</a>
+                  
+                  </td>
+                  </tr>
+                  
+                  <tr>
+                  <td>Дональд Трамп объявил о своем участии в президентских выборах в США в 2024 году</td>
+                  <td>20 марта 2024 г. 18:44</td>
+                  <td>Экс-президент Дональд Трамп объявил, что будет добиваться выдвижения кандидатуры на пост президента от республиканцев в 2024 году. Его представители подали …</td>
+                  <td>
+                  
+                  <a href = "/news/categories/1">Политика</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/news/10/edit">Изменить новость</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/news/10/delete">Удалить новость</a>
+                  
+                  </td>
+                  </tr>
+                  
+                  <tr>
+                  <td>Франция оштрафовала Google на €250 млн за обучение ИИ на новостном контенте</td>
+                  <td>20 марта 2024 г. 18:40</td>
+                  <td>Французское Управление по надзору за конкуренцией оштрафовало Google на €250 млн за нарушения, связанные с действующими в ЕС нормами в …</td>
+                  <td>
+                  
+                  <a href = "/news/categories/3">Технологии</a>
+                  
+                  <a href = "/news/categories/1">Политика</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/news/8/edit">Изменить новость</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/news/8/delete">Удалить новость</a>
+                  
+                  </td>
+                  </tr>
+                  
+                  <tr>
+                  <td>Элитам нужен контроль над свободой слова в интернете</td>
+                  <td>5 февраля 2024 г. 7:22</td>
+                  <td>Кажется, почти каждый день в СМИ твердят о необходимости контроля или ограничения свободы слова в интернете. Сегодня они пишут о …</td>
+                  <td>
+                  
+                  <a href = "/news/categories/1">Политика</a>
+                  
+                  <a href = "/news/categories/3">Технологии</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/articles/4/edit">Изменить статью</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/articles/4/delete">Удалить статью</a>
+                  
+                  </td>
+                  </tr>
+                  
+                  <tr>
+                  <td>Китайские учёные разработали ИИ для проверки к********** на верность партии</td>
+                  <td>5 февраля 2024 г. 7:14</td>
+                  <td>Китайские учёные заявили, что создали искусственный интеллект, позволяющий проверять благонадёжность членов к*************** партии. О разработке китайских к********** пишет The Times. …</td>
+                  <td>
+                  
+                  <a href = "/news/categories/1">Политика</a>
+                  
+                  <a href = "/news/categories/3">Технологии</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/articles/2/edit">Изменить статью</a>
+                  
+                  </td>
+                  <td>
+                  
+                  <a href="/news/articles/2/delete">Удалить статью</a>
+                  
+                  </td>
+                  </tr>
+                  
+                  </table>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  </div>
+                  </div>
+                  </div>
+                  </body>
+                  </html>
+          description: ''
+      tags:
+        - categories
+  /news/categories/{id}/subscribe:
+    get:
+      operationId: subscribeUser
+      description: 'To subscribe user on the category'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 'article id'
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            text/html:
+              schema:
+                type: string
+                example: |
+                  <!DOCTYPE html>
+                  <html lang="en">
+                      <head>
+                          <meta charset="utf-8" />
+                          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                          <meta name="description" content="" />
+                          <meta name="author" content="" />
+                          <title>
+                  Subscribe
+                  </title>
+
+
+
+                      <link href="/static/css/styles.css" rel="stylesheet" />
+                  	<style>
+                          body {background-color:  powderblue ;}
+                      </style>
+                      </head>
+                      <body>
+                       <!-- Загружаем кэширование -->
+
+                          <!-- Responsive navbar-->
+                          <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                     <div class="container">
+                         <a class="navbar-brand" href="http://127.0.0.1:8000/news/">NewsPortal</a>
+                         <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                 data-target="#navbarResponsive"
+                                 aria-controls="navbarResponsive" aria-expanded="false"
+                                 aria-label="Toggle navigation">
+                             <span class="navbar-toggler-icon"></span>
+                         </button>
+
+                     </div>
+                  </nav>
+
+                          <!-- Page content-->
+                                  <div class="container">
+                             <div class="row">
+                                 <div class="col-lg-12 text-center">
+
+                  <h1 class="text-center">Вы успешно подписались на рассылку новостей категории "Политика"</h1>
+
+                                 </div>
+                             </div>
+                          </div>
+                      </body>
+                  </html>
+          description: ''
+      tags:
+        - categories
 components:
   schemas:
     New_post:
@@ -113,18 +1865,43 @@ components:
       properties:
         author:
           type: integer
+          description: 'ID автора'
         category:
           type: string
-          maxLength: 64
+          description: 'ID категории'
         title:
           type: string
           maxLength: 100
           minLength: 30
+          description: 'Название поста'
         text:
           type: string
           minLength: 50
+          description: 'Текст поста'
       required:
         - author
         - category
         - title
         - text
+    Edit_post:
+      type: object
+      properties:
+        author:
+          type: integer
+          description: 'ID автора'
+          required: false
+        category:
+          type: string
+          description: 'ID категории'
+          required: false
+        title:
+          type: string
+          maxLength: 100
+          minLength: 30
+          description: 'Название новости'
+          required: false
+        text:
+          type: string
+          minLength: 50
+          description: 'Текст новости'
+          required: false

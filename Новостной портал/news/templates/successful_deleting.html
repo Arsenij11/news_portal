@@ -2,9 +2,9 @@
 {% load i18n %}
 {% block content %}
 <br>
-<h1>{% trans 'Удаление новости' %}</h1>
+<h1>{% trans 'Новость/статья успешно удалена!' %}</h1>
 <br>
-<form action="{% url 'set_language' %}" method="POST"> 
+<form action="{% url 'set_language' %}" method="POST">
 		{% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
         <input type="hidden" name="next" value="{{ redirect_to }}">
         <select name="language" id="">
@@ -20,9 +20,5 @@
         <input type="submit" value="set">
 </form>
 <hr>
-<form action="" method="post">
-    {% csrf_token %}
-    <p>{% trans 'Удаляем новость' %} "{{ object.title }}"?</p>
-    <input type="submit" value="Delete" />
-</form>
+<a style="font-align: center" href="{% url 'post_list' %}">{% trans 'Вернуться на главную страницу' %}</a>
 {% endblock content %}

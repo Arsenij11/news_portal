@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-15 16:11+0300\n"
+"POT-Creation-Date: 2024-08-03 14:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\news_bd\views.py:198
+msgid "Вы успешно подписались на рассылку новостей категории "
+msgstr "You have successfully subscribed to the category newsletter "
 
 #: .\templates\403.html:93
 msgid "ОШИБКА 403"
@@ -58,23 +62,28 @@ msgstr "Deleting of the article"
 msgid "Удаляем статью"
 msgstr "Are we deleting the article"
 
-#: .\templates\concrete_news.html:30 .\templates\news.html:58
-#: .\templates\news_search.html:41 .\templates\subscriptions.html:43
+#: .\templates\concrete_news.html:31 .\templates\news.html:32
+#: .\templates\news_search.html:34 .\templates\subscriptions.html:32
+msgid "Выберите свой часовой пояс"
+msgstr "Choose your time zone"
+
+#: .\templates\concrete_news.html:46 .\templates\news.html:58
+#: .\templates\news_search.html:56 .\templates\subscriptions.html:60
 msgid "Заголовок"
 msgstr "Title"
 
-#: .\templates\concrete_news.html:31 .\templates\news.html:60
-#: .\templates\news_search.html:43 .\templates\subscriptions.html:45
+#: .\templates\concrete_news.html:47 .\templates\news.html:60
+#: .\templates\news_search.html:58 .\templates\subscriptions.html:62
 msgid "Текст новости/статьи"
 msgstr "News/article text"
 
-#: .\templates\concrete_news.html:32 .\templates\news.html:59
-#: .\templates\news_search.html:42 .\templates\subscriptions.html:44
+#: .\templates\concrete_news.html:48 .\templates\news.html:59
+#: .\templates\news_search.html:57 .\templates\subscriptions.html:61
 msgid "Дата публикации"
 msgstr "Date of publication"
 
-#: .\templates\concrete_news.html:42 .\templates\news.html:93
-#: .\templates\subscriptions.html:79
+#: .\templates\concrete_news.html:58 .\templates\news.html:93
+#: .\templates\news_search.html:91 .\templates\subscriptions.html:96
 msgid "Свежих новостей нет!!!"
 msgstr "No fresh news!!!"
 
@@ -94,20 +103,16 @@ msgstr ""
 "You trying to edit/delete the article on web-page which to serve for editing/"
 "deleting a news"
 
-#: .\templates\news.html:11 .\templates\news_search.html:12
-#: .\templates\subscriptions.html:10
+#: .\templates\news.html:11 .\templates\news_search.html:13
+#: .\templates\subscriptions.html:11
 msgid "Все новости/статьи"
 msgstr "All of news/articles"
 
-#: .\templates\news.html:32
-msgid "Выберите свой часовой пояс"
-msgstr "Choose your time zone"
-
-#: .\templates\news.html:46 .\templates\subscriptions.html:33
+#: .\templates\news.html:46 .\templates\subscriptions.html:50
 msgid "Добавить новость"
 msgstr "To add a news"
 
-#: .\templates\news.html:50 .\templates\subscriptions.html:37
+#: .\templates\news.html:50 .\templates\subscriptions.html:54
 msgid "Добавить статью"
 msgstr "To add an article"
 
@@ -115,24 +120,24 @@ msgstr "To add an article"
 msgid "Найти новость"
 msgstr "To search a news"
 
-#: .\templates\news.html:61 .\templates\news_search.html:44
-#: .\templates\subscriptions.html:46
+#: .\templates\news.html:61 .\templates\news_search.html:59
+#: .\templates\subscriptions.html:63
 msgid "Категория"
 msgstr "Category"
 
-#: .\templates\news.html:76 .\templates\news_search.html:59
+#: .\templates\news.html:76 .\templates\news_search.html:74
 msgid "Изменить новость"
 msgstr "To change a news"
 
-#: .\templates\news.html:78 .\templates\news_search.html:61
+#: .\templates\news.html:78 .\templates\news_search.html:76
 msgid "Изменить статью"
 msgstr "To change an article"
 
-#: .\templates\news.html:83 .\templates\news_search.html:66
+#: .\templates\news.html:83 .\templates\news_search.html:81
 msgid "Удалить новость"
 msgstr "To delete a news"
 
-#: .\templates\news.html:85 .\templates\news_search.html:68
+#: .\templates\news.html:85 .\templates\news_search.html:83
 msgid "Удалить статью"
 msgstr "To delete an article"
 
@@ -140,10 +145,24 @@ msgstr "To delete an article"
 msgid "Новость"
 msgstr "News"
 
+#: .\templates\news_delete.html:5
+#, fuzzy
+#| msgid "Удаляем новость"
+msgid "Удаление новости"
+msgstr "Deleting of the news"
+
 #: .\templates\news_delete.html:25
 msgid "Удаляем новость"
 msgstr "Are we deleting the news"
 
-#: .\templates\subscriptions.html:28
+#: .\templates\subscriptions.html:45
 msgid "Подписаться"
 msgstr "To subscribe"
+
+#: .\templates\successful_deleting.html:5
+msgid "Новость/статья успешно удалена!"
+msgstr "News/article was successfully deleted"
+
+#: .\templates\successful_deleting.html:23
+msgid "Вернуться на главную страницу"
+msgstr "Back to home page"
